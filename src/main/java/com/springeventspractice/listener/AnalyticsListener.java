@@ -8,14 +8,14 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderConfirmationListener {
+public class AnalyticsListener {
 
-    private static final Logger log = LoggerFactory.getLogger(OrderConfirmationListener.class);
+    private static final Logger log = LoggerFactory.getLogger(AnalyticsListener.class);
 
-    @Order(2)
+    @Order(3)
     @EventListener
     public void handleOrderCreated(OrderCreatedEvent event) {
-        log.info("Sending order confirmation for order {} to email {}",
-                event.getOrder().getId(), event.getOrder().getCustomerEmail());
+        log.info("Recording analytics event for order {} with amount {}",
+                event.getOrder().getId(), event.getOrder().getAmount());
     }
 }
