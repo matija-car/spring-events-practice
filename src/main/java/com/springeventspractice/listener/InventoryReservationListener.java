@@ -15,6 +15,7 @@ public class InventoryReservationListener {
     @Order(1)
     @EventListener
     public void handleOrderCreated(OrderCreatedEvent event) {
-        log.info("Reserving inventory for order {}", event.getOrder().getId());
+        log.info("Reserving inventory for order {} on thread {}",
+                event.getOrder().getId(), Thread.currentThread().getName());
     }
 }

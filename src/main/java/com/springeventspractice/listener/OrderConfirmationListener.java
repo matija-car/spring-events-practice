@@ -15,7 +15,7 @@ public class OrderConfirmationListener {
     @Order(2)
     @EventListener
     public void handleOrderCreated(OrderCreatedEvent event) {
-        log.info("Sending order confirmation for order {} to email {}",
-                event.getOrder().getId(), event.getOrder().getCustomerEmail());
+        log.info("Sending order confirmation for order {} to email {} on thread {}",
+                event.getOrder().getId(), event.getOrder().getCustomerEmail(), Thread.currentThread().getName());
     }
 }
