@@ -17,5 +17,9 @@ public class InventoryReservationListener {
     public void handleOrderCreated(OrderCreatedEvent event) {
         log.info("Reserving inventory for order {} on thread {}",
                 event.getOrder().getId(), Thread.currentThread().getName());
+
+        if (event.getOrder().getAmount() > 1000) {
+            throw new IllegalStateException("Insufficient inventory for order " + event.getOrder().getId());
+        }
     }
 }

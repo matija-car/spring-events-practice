@@ -20,9 +20,12 @@ public class AnalyticsListener {
         log.info("Recording analytics event for order {} with amount {} on thread {}",
                 event.getOrder().getId(), event.getOrder().getAmount(), Thread.currentThread().getName());
 
+        if (event.getOrder().getAmount() > 1000) {
+            throw new RuntimeException("Analytics service unavailable for order " + event.getOrder().getId());
+        }
+
         simulateSlowExternalCall();
     }
-
     private void simulateSlowExternalCall() {
         try {
             Thread.sleep(2000);
